@@ -11,7 +11,7 @@
 <body>
     <h1>Hello food lover! Welcome to {{name}}</h1> <!--Passing the jinja template, the value of name is passed from python file to html-->
     <h2>where you can find your next favourite recipe ❥ ♥</h2>
-    <img src="static/logo.jpg"/> <!--Placing an image in html-->
+    <img src="static/logo.png"/> <!--Placing an image in html-->
 
     <p>Click here for the current top 100 rated recipes 🥑</p>
     <form action="/top_100">
@@ -35,7 +35,6 @@
         {% for index in range(3) %}
         <!--name passed inorder to reference the input tag, placeholder writes text inside input field NB!!!! list = movies??? will be list of enterable recipes..??-->
         <input type="text" name="title" placeholder="Enter recipes" list="movies">
-        <input type="number" name="ratings" placeholder="(1-5)" min="1" max="5" required>
         <br>
         {% endfor %}
         <button type="submit">Show me something new!</button>
