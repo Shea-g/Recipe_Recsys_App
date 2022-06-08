@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<!-- /*sdd */ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I hope you like these recipes 🍴</title>
+    <link rel="stylesheet" href="/static/reco_style.css?nocache={timestamp}" type="text/css"/> <!--linking css style sheet-->
+</head>
+<body>
+    <!--jinja tag {{movie}} to access the python variables inside html page-->
+    <h1>Hey foodie! We hope you're ready to discover your next favourite meal 🍴</h1>
+    <h1>These are personally recommended for you!</h1>
+    
+    <!--for doing any style changes to elements in ul referencing this tag by 
+    a class name style-->
+    <ul class="style"> 
+        {% for recipe in recipes %}
+        <li>{{recipe}}</li>
+        {% endfor %}
+    </ul>
+    <a href='/'>Go Back to main</a>
+</body>
+</html>

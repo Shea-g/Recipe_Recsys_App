@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Recommendation</title>
+    <link rel="stylesheet" href="/static/rand_style.css"/> <!--linking css style sheet-->
+</head>
+<body>
+    <!--jinja tag {{movie}} to access the python variables inside html page-->
+    <h1>Hey wildcard, here are some random recipes ♠</h1>
+    <h2>Browse on through, and see if there's anything enticing!</h2>
+    
+    <!--for doing any style changes to elements in ul referencing this tag by 
+    a class name style-->
+    <ul class="style"> 
+        {% for recipe in recipes %} <!--need this to be from df with all info?-->
+        <li>{{recipe}}</li>
+        {% endfor %}
+    </ul>
+    <a href='/'>Go Back to main</a>
+</body>
+</html>
