@@ -5,6 +5,7 @@ from recommender import NMF_new_user, NMF_model, NMF_output
 import random
 import pandas as pd
 import numpy as np
+import pickle
 
 # construct our flask instance, pass name of module
 #requests received from clients passed by server to this object for handling
@@ -75,7 +76,7 @@ def nmf_recommend():
     user_rating = dict(zip(recipe,ratingss)) 
 
     recoreco = NMF_output(user_rating)
-    
+
     # renders the html page as the output of this function, need to perhaps put all of nmf in one func!
     return  render_template('recommender_user.html', recoreco= recoreco)
 
