@@ -1,3 +1,5 @@
+import pickle
+
 """
 
 UTILS 
@@ -16,9 +18,6 @@ ii) Data: imported from pickled files, in the form of pickled data frames
 
 
 """
-import pandas as pd
-import numpy as np
-import pickle
 
 '''
 Pickled objects for use 

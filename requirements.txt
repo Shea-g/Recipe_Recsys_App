@@ -5,3 +5,4 @@ fuzzywuzzy
 gunicorn
 MarkupSafe == 1.1.1
 sklearn
+pickle

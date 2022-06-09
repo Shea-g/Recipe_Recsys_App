@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello food lover! </title> <!--Whatever is written under title is dispalyed on the tab of the webpage-->
-    <link rel="stylesheet" href="/static/index_style.css?nocache={timestamp}" type="text/css"/><!--linking css style sheet to html, note background goes in here!-->
+    <link rel="stylesheet" href="/static/style.css?nocache={timestamp}" type="text/css"/><!--linking css style sheet to html, note background goes in here!-->
 </head>
 <body>
     <h1>Hello food lover! Welcome to {{name}}</h1> <!--Passing the jinja template, the value of name is passed from python file to html-->
@@ -18,6 +18,12 @@
         <button type="submit">Show me the top 100 recipes!</button>
     </form>   
 
+    <p>Nothing caught your eye in the top 100? Click here for some inspo! 🥗</p>
+    <!--Creating a form for the user to input values through the webpage-->
+    <form action="/random_reco"> <!--After clicking on submit button the routing is done on the /recommend-->
+        <button type="submit">Show me something new!</button>
+    </form>  
+
     <p>Let's get to know each other! Click here to get personalised recipe recommendations 🍊</p>
     <!--Creating a form for the user to input values through the webpage-->
     <form action="/recommender_user"> <!--After clicking on submit button the routing is done on the /recommender_user-->
@@ -28,17 +34,12 @@
         <br>
         {% endfor %}
         <button type="submit">Show me my personalised recommendation!</button>
+    </form>
+        <datalist id="recipes">
+            {%for recipe in recipes %}
+            <option value = "{{recipe}}"></option>
+            {% endfor %}
+        </datalist> 
 
-     <p>Nothing caught your eye? Click here for some inspo! 🥗</p>
-    <!--Creating a form for the user to input values through the webpage-->
-    <form action="/rand_recommend"> <!--After clicking on submit button the routing is done on the /recommend-->
-        <button type="submit">Show me something new!</button>
-    </form>   
-
-    <datalist id="recipes">
-        {%for recipe in recipes %}
-        <option value = "{{recipe}}"></option>
-        {% endfor %}
-    </datalist>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I hope you like these recipes 🍴</title>
-    <link rel="stylesheet" href="/static/reco_style.css?nocache={timestamp}" type="text/css"/> <!--linking css style sheet-->
+    <link rel="stylesheet" href="/static/style.css?nocache={timestamp}" type="text/css"/> <!--linking css style sheet-->
 </head>
 <body>
     <!--jinja tag {{movie}} to access the python variables inside html page-->
@@ -17,7 +17,7 @@
     <!--for doing any style changes to elements in ul referencing this tag by 
     a class name style-->
     <ul class="style"> 
-        {% for recipe in recipes %}
+        {% for recipe in recoreco %}
         <li>{{recipe}}</li>
         {% endfor %}
     </ul>

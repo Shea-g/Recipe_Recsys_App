@@ -1,10 +1,10 @@
 import re
+from flask import Flask, render_template, request
+from utils import top100_dict, recipes_dict 
+from recommender import NMF_new_user, NMF_model, NMF_output
 import random
 import pandas as pd
 import numpy as np
-from flask import Flask,render_template, request
-from utils import top100_dict, recipes_dict  #create_user_dataframe#recipes df of read in recipes
-from recommender import NMF_new_user, NMF_model, NMF_output
 
 # construct our flask instance, pass name of module
 #requests received from clients passed by server to this object for handling
@@ -24,7 +24,7 @@ def welcome():
 
 
 
-@app.route('/top_100', methods = ['POST', 'GET'])
+@app.route('/top_100')
 def top_100_recommend():
     """
     Top 100 recipes from the dataset
@@ -36,41 +36,9 @@ def top_100_recommend():
     return  render_template('top_100.html',recipes_names=recipe_names) 
 
 
+@app.route('/rand_recommend')
 
-
-@app.route('/recommender_user', methods = ['POST', 'GET'])
-def nmf_recommend():
-    """
-    Renders user ratings (using request args)
-    feeds the user ratings into the model (in 
-    recommender) to get the NMF recommendations
-
-    -> note that user table and imputation 
-    performed in model function
-
-    """
-    #read user input from url/webpage
-    print(request.args)
-    recipes = request.args.getlist('recipe') # taking lists of titles only from user input, make sure same in html- how to use with fuzzy wuzzy?
-    ratings = request.args.getlist('rating') # taking lists of ratings only from user input, "       "
-    print(recipes,ratings)
-
-    # converting lists of titles and ratings into dict to pass to our recommender model
-    ratings = map(int, ratings) #needs to be int
-    user_rating = dict(zip(recipes,ratings)) 
-
-    user_i= NMF_new_user(user_rating) #recommending recipes as defined in pd.read_csv in utils, using the first NMF func (feeds into others)
-    recommendation = NMF_model(user_i) #2 funcs to break up for loops (makes sense like this??)
-    recoreco = NMF_output(recommendation)
-    # renders the html page as the output of this function, need to perhaps put all of nmf in one func!
-    return  render_template('recommender_user.html', recoreco= recoreco)
-
-
-
-
-@app.route('/rand_recommend', methods = ['POST', 'GET'])
-
-def random_recommend(recipes_dict, k=5):
+def random_recommend():
     """
     Random recommender, which uses random lib
     and samples the pickled recipes dictionary
@@ -83,6 +51,36 @@ def random_recommend(recipes_dict, k=5):
     return  render_template('random_reco.html', rand_rec = rand_rec)
 
 
+
+
+@app.route('/recommender_user')
+def nmf_recommend():
+    """
+    Renders user ratings (using request args)
+    feeds the user ratings into the model (in 
+    recommender) to get the NMF recommendations
+
+    -> note that user table and imputation 
+    performed in model function
+
+    """
+    #read user input from url/webpage
+    print(request.args)
+    recipe = request.args.getlist('recipe') # taking lists of titles only from user input, make sure same in html
+    ratings = request.args.getlist('ratings') # taking lists of ratings only from user input, "       "
+    print(recipe,ratings)
+
+    # converting lists of titles and ratings into dict to pass to our recommender model
+    ratingss = map(int, ratings) #needs to be int
+    user_rating = dict(zip(recipe,ratingss)) 
+
+    recoreco = NMF_output(user_rating)
+    
+    # renders the html page as the output of this function, need to perhaps put all of nmf in one func!
+    return  render_template('recommender_user.html', recoreco= recoreco)
+
+
+
 if __name__=='__main__':
-    app.run(debug=True,port=5000)
+    app.run(debug=True) #port=5000
 

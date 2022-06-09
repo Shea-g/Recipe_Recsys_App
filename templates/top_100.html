@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top 100 Recipes</title>
-    <link rel="stylesheet" href="/static/top_style.css?nocache={timestamp}" type="text/css""/> <!--linking css style sheet-->
+    <link rel="stylesheet" href="/static/style.css?nocache={timestamp}" type="text/css""/> <!--linking css style sheet-->
 </head>
 <body>
     <!--jinja tag {{movie}} to access the python variables inside html page-->
@@ -15,10 +15,10 @@
     <!--for doing any style changes to elements in ul referencing this tag by 
     a class name style-->
     <ul class="style"> 
-        {% for recipe in recipes %}
+        {% for recipe in recipe_names %}
         <li>{{recipe}}</li>
         {% endfor %}
-    </ul>
+    </ul> 
     <a href='/'>Go Back to main</a>
 </body>
 </html>
