@@ -5,3 +5,4 @@ gunicorn
 MarkupSafe == 1.1.1
 sklearn
 scikit-learn
+pickle

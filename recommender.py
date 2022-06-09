@@ -20,10 +20,8 @@ def NMF_new_user(user_rating, recipes_dict, R_vec):  #user rating zipped dict in
     through to remove duplicates before concat. 
     User df then imputed with user-wise and 
     recipe wise means, and averaged. 
-    
     Future: impute with cat wise weighted mean
     """
-
     visitor ='new_user'
     user_input = pd.DataFrame(user_rating, index=[visitor])
     
@@ -47,7 +45,6 @@ def NMF_new_user(user_rating, recipes_dict, R_vec):  #user rating zipped dict in
     user2 = R_vec #R_vec is one row of the col wise imputed df as an array
     user_i = (user1 + user2)/2
     user_i
-
     return(user_i) 
 
 
